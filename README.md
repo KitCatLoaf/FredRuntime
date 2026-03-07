@@ -10,3 +10,10 @@ Usage:
 - FredRuntime only works on windows (currently)
 - run `fred -h` for help
 - .vscode folder contains files for fred API autocomplete
+
+
+## DISCLAIMER:
+
+1. This language is very new and underdeveloped. Do not use for real.
+2. have never written in C++ prior to this project.
+3. This project is mainly a hobby and for my portfolio.
