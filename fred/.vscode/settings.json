@@ -1,0 +1,11 @@
+{
+    "Lua.workspace.library": [
+        ".vscode"
+    ],
+    "Lua.diagnostics.globals": [
+        "fred"
+    ],
+    "files.associations": {
+        "*.frd": "lua"
+    }
+}
