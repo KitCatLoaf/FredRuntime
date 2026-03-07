@@ -3,4 +3,5 @@ print("Native API calls like versions: " .. fred.version())
 print("Built in compiler! .lua -> .frd")
 print("\n.frd subscripting language")
 
+print("\nPress enter to exit...")
 io.read()
