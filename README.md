@@ -4,8 +4,9 @@
 ---
 
 Usage:
-- FredRuntime is compiled through fred.exe in FredRuntime > fred > build
+- FredRuntime is compiled into fred.exe in FredRuntime > fred > build
 - To use "fred" as a regular command add fred.exe to path
+  - Otherwise run with `./fred.exe [command]`
 - FredRuntime only works on windows (currently)
 - run `fred -h` for help
 - .vscode folder contains files for fred API autocomplete
