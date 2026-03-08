@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "fredlib.h"
+#include "fred.h"
 
 std::string toLower(std::string s) {
     for (char& c : s) {

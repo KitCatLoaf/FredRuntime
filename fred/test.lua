@@ -11,4 +11,4 @@ print("Built in compiler! .lua -> .frd") -- use fred compile <program.lua> to co
 print("\n.frd subscripting language")
 
 print("\nPress enter to exit...")
-io.read() -- Hangs the terminal until enter is pressed
+fred.read()
