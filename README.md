@@ -1,8 +1,6 @@
 # FredRuntime
 > ## lua subscripting language
 
----
-
 Usage:
 - FredRuntime is compiled into fred.exe in FredRuntime > fred > build
 - To use "fred" as a regular command add fred.exe to path
