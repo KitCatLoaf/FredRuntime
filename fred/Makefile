@@ -36,7 +36,7 @@ $(LUA_LIB): $(LUA_OBJS)
 	ar rcs $@ $^
 
 $(TARGET): $(SRC_OBJS) $(LUA_LIB)
-	$(CXX) $^ -o $@
+	$(CXX) -static $^ -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)

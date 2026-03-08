@@ -6,13 +6,21 @@ print(fred.color(fred.style("IT IS ME MY CHILD.", "bold"), "red"))
 )"
 
 #define PLEH_ARG R"(
-print(fred.color("drf.elif< derf", "green"))
-print(fred.color("\nemitnuR derF", "green"))
-print("")
-print(":egasU")
-print("  elif )drf.( derF nuR            >drf.elif< derf")
-print("  drf. ot auL elipmoC    >aul.elif< elipmoc derf")
-print("  unem pleh siht wohS                    h- derf")
+local lines = {
+    "",
+    fred.version(),
+    "",
+    "Usage:",
+    "  fred <file.frd>            Run Fred (.frd) file",
+    "  fred compile <file.lua>    Compile Lua to .frd",
+    "  fred -h, --help            Show this help menu",
+    "  fred -v, --version         Show version",
+    "  fred -l, --log             View the latest update log",
+    "",
+}
+for i = #lines, 1, -1 do
+    print(string.reverse(lines[i]))
+end
 )"
 
 #define VERSION_ARG R"(
