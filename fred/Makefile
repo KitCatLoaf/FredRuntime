@@ -36,7 +36,7 @@ $(LUA_LIB): $(LUA_OBJS)
 	ar rcs $@ $^
 
 $(TARGET): $(SRC_OBJS) $(LUA_LIB)
-	$(CXX) -static $^ -o $@
+	$(CXX) -static-libgcc -static-libstdc++ $^ -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)
