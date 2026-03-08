@@ -8,6 +8,10 @@ SRC_DIR   = src
 BUILD_DIR = build
 OBJ_DIR   = build/obj
 
+DLLS = /ucrt64/bin/libgcc_s_seh-1.dll \
+       /ucrt64/bin/libstdc++-6.dll \
+       /ucrt64/bin/libwinpthread-1.dll
+
 LUA_SRCS = $(wildcard $(LUA_DIR)/*.c)
 LUA_OBJS = $(patsubst $(LUA_DIR)/%.c, $(OBJ_DIR)/%.o, $(LUA_SRCS))
 
@@ -38,7 +42,10 @@ $(LUA_LIB): $(LUA_OBJS)
 $(TARGET): $(SRC_OBJS) $(LUA_LIB)
 	$(CXX) -static-libgcc -static-libstdc++ $^ -o $@
 
+deploy: all
+	cp $(DLLS) $(BUILD_DIR)/
+
 clean:
 	rm -rf $(BUILD_DIR)
 
-.PHONY: all clean
+.PHONY: all deploy clean
