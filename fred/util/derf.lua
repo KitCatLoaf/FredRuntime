@@ -1,5 +1,0 @@
-print(fred.color("\n]AHPLA[ 0.1v emitnuR derF\n", "green"))
-print(":egasU\n")
-print("  elif )drf.( derF nuR            >drf.elif< derf")
-print("  drf. ot auL elipmoC    >aul.elif< elipmoc derf")
-print("  unem pleh siht wohS                    h- derf")
