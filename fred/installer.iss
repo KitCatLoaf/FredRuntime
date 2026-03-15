@@ -20,8 +20,11 @@ Source: "build\libstdc++-6.dll"; DestDir: "{app}"
 Source: "build\libwinpthread-1.dll"; DestDir: "{app}"
 
 [Registry]
-; Store install path so we can find it on update
 Root: HKCU; Subkey: "Software\FredRuntime"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Flags: uninsdeletekey
+
+Root: HKCU; Subkey: "Software\Classes\.frd"; ValueType: string; ValueName: ""; ValueData: "FredFile"; Flags: uninsdeletekey deletekey
+Root: HKCU; Subkey: "Software\Classes\FredFile"; ValueType: string; ValueName: ""; ValueData: "Fred File"; Flags: deletekey
+Root: HKCU; Subkey: "Software\Classes\FredFile\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\fred.exe"" ""%1"""; Flags: deletekey
 
 [Tasks]
 Name: modifypath; Description: "Add Fred to PATH (recommended)"
