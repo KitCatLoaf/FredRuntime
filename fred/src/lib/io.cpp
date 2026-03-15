@@ -36,7 +36,6 @@ static int fredStyle(lua_State* L) {
     return 1;
 }
 
-// fred.read(prompt) -> prints prompt, returns user input as string
 static int fredRead(lua_State* L) {
     const char* prompt = luaL_optstring(L, 1, "");
     std::cout << prompt;

@@ -28,7 +28,7 @@ end
 )"
 
 #define LOG_ARG R"(
-    print("\nUpdate Log:\n\n- New arguments\n- Fredlib handler v2.0\n- Better autocomplete\n- Fixed naming conventions in C++\n- General fixes and improvements!")
+    print("\nUpdate Log:\n\n- More fs library additions\n- Autocomplete Update\n- FredSetup.exe file for easy installation\n- use require('fred.fs') and use fs.[command] now.")
 )"
 
 void registerFred(lua_State* L) {

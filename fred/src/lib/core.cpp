@@ -2,7 +2,7 @@
 #include <string>
 
 #define FRED_NAME "Fred Runtime"
-#define FRED_VERSION " v1.2 [ALPHA]"
+#define FRED_VERSION " v1.3 [ALPHA]"
 #define FRED_FULL FRED_NAME FRED_VERSION
 
 static int fredVersion(lua_State* L) {

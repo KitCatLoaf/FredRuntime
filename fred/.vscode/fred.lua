@@ -41,23 +41,41 @@ function fred.time() end
 ---@return string
 function fred.date(format) end
 
+-- =====================
+-- fred.fs (require "fred.fs")
+-- =====================
+
 ---@class FredFS
-fred.fs = {}
+local fs = {}
 
 ---Reads a file and returns its contents
 ---@param path string
 ---@return string|nil content
 ---@return string|nil error
-function fred.fs.read(path) end
+function fs.read(path) end
 
----Writes a string to a file
+---Writes a string to a file, creates folders if needed
 ---@param path string
 ---@param content string
 ---@return boolean success
 ---@return string|nil error
-function fred.fs.write(path, content) end
+function fs.write(path, content) end
 
 ---Returns true if a file exists
 ---@param path string
 ---@return boolean
-function fred.fs.exists(path) end
+function fs.exists(path) end
+
+---Copies a file from source to destination
+---@param source string
+---@param destination string
+---@return boolean success
+---@return string|nil error
+function fs.copy(source, destination) end
+
+---Creates a folder and any missing parent folders
+---@param path string
+---@return boolean
+function fs.mkdir(path) end
+
+return fs

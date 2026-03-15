@@ -3,8 +3,23 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <sys/stat.h>
+#include <direct.h>
 
-// fred.fs.read(path) -> returns file contents as a string
+static void createDirs(const std::string& path) {
+    std::string current = "";
+    for (size_t i = 0; i < path.size(); i++) {
+        char c = path[i];
+        if (c == '/' || c == '\\') {
+            if (current != "" && current != "." && current != "..") {
+                _mkdir(current.c_str());
+            }
+        }
+        current += c;
+    }
+    _mkdir(current.c_str());
+}
+
 static int fredFsRead(lua_State* L) {
     const char* path = luaL_checkstring(L, 1);
 
@@ -21,10 +36,21 @@ static int fredFsRead(lua_State* L) {
     return 1;
 }
 
-// fred.fs.write(path, content) -> writes string to file
+static std::string getDirName(const std::string& path) {
+    size_t pos = path.find_last_of("/\\");
+    if (pos == std::string::npos) return "";
+    return path.substr(0, pos);
+}
+
+
 static int fredFsWrite(lua_State* L) {
     const char* path    = luaL_checkstring(L, 1);
     const char* content = luaL_checkstring(L, 2);
+
+    std::string dir = getDirName(path);
+    if (dir != "") {
+        createDirs(dir);
+    }
 
     std::ofstream file(path);
     if (!file.is_open()) {
@@ -38,7 +64,6 @@ static int fredFsWrite(lua_State* L) {
     return 1;
 }
 
-// fred.fs.exists(path) -> returns true or false
 static int fredFsExists(lua_State* L) {
     const char* path = luaL_checkstring(L, 1);
 
@@ -47,15 +72,54 @@ static int fredFsExists(lua_State* L) {
     return 1;
 }
 
+static int fredFsCopy(lua_State* L) {
+    const char* src  = luaL_checkstring(L, 1);
+    const char* dest = luaL_checkstring(L, 2);
+
+    std::ifstream in(src, std::ios::binary);
+    if (!in.is_open()) {
+        lua_pushboolean(L, 0);
+        lua_pushstring(L, "could not open source file");
+        return 2;
+    }
+
+    std::string destDir = getDirName(dest);
+    if (destDir != "") {
+        createDirs(destDir);
+    }
+
+    std::ofstream out(dest, std::ios::binary);
+    if (!out.is_open()) {
+        lua_pushboolean(L, 0);
+        lua_pushstring(L, "could not open destination file");
+        return 2;
+    }
+
+    out << in.rdbuf();
+    lua_pushboolean(L, 1);
+    return 1;
+}
+
+static int fredFsMkdir(lua_State* L) {
+    const char* path = luaL_checkstring(L, 1);
+    createDirs(path);
+    lua_pushboolean(L, 1);
+    return 1;
+}
+
 static const luaL_Reg fsLib[] = {
     {"read",   fredFsRead},
     {"write",  fredFsWrite},
     {"exists", fredFsExists},
+    {"copy", fredFsCopy},
+    {"make", fredFsMkdir},
     {NULL, NULL}
 };
 
 void registerFS(lua_State* L) {
-    lua_newtable(L);
-    luaL_setfuncs(L, fsLib, 0);
-    lua_setfield(L, -2, "fs");
+    luaL_requiref(L, "fred.fs", [](lua_State* L) -> int {
+        luaL_newlib(L, fsLib);
+        return 1;
+    }, 0);
+    lua_pop(L, 1);
 }
