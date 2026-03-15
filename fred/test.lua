@@ -7,6 +7,7 @@
 print(fred.style(fred.color("\nColored text and styles!", "blue"), "italic"))
 -- Native fred API call fred.version() returns the version of Fred Runtime as a string
 print("Native API calls like versions: " .. fred.version())
+print("Platform: " .. fred.platform())
 print("Built in compiler! .lua -> .frd") -- use fred compile <program.lua> to compile! fred -h for help
 print("\n.frd subscripting language")
 
