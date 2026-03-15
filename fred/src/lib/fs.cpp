@@ -3,8 +3,14 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <sys/stat.h>
-#include <direct.h>
+
+#ifdef _WIN32
+    #include <direct.h>
+    #define MKDIR(path) _mkdir(path)
+#else
+    #include <sys/stat.h>
+    #define MKDIR(path) mkdir(path, 0755)
+#endif
 
 static void createDirs(const std::string& path) {
     std::string current = "";
@@ -12,12 +18,12 @@ static void createDirs(const std::string& path) {
         char c = path[i];
         if (c == '/' || c == '\\') {
             if (current != "" && current != "." && current != "..") {
-                _mkdir(current.c_str());
+                MKDIR(current.c_str());
             }
         }
         current += c;
     }
-    _mkdir(current.c_str());
+    MKDIR(current.c_str());
 }
 
 static int fredFsRead(lua_State* L) {

@@ -28,7 +28,7 @@ end
 )"
 
 #define LOG_ARG R"(
-    print("\nUpdate Log:\n\n- More fs library additions\n- Autocomplete Update\n- FredSetup.exe file for easy installation\n- use require('fred.fs') and use fs.[command] now.")
+    print("\nUpdate Log:\n\n- More fs library additions\n- Autocomplete Update\n- FredSetup.exe file for easy installation\n- use require('fred.fs') and use fs.[command] now.\n- LINUX SUPPORT")
 )"
 
 void registerFred(lua_State* L) {
