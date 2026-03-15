@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 FRED_BIN="/usr/local/bin/fred"
-FRED_SRC="$(dirname "$0")/fred"
+FRED_SRC="$(cd "$(dirname "$0")/../.." && pwd)/build/fred"
 REAL_HOME=$(eval echo ~$SUDO_USER)
 
 echo ""
@@ -23,6 +23,13 @@ if [ -f "$FRED_BIN" ]; then
 fi
 
 echo "Installing Fred..."
+
+if [ ! -f "$FRED_SRC" ]; then
+    echo "Error: Could not find Fred binary at $FRED_SRC"
+    echo "Make sure you have run 'make' first!"
+    exit 1
+fi
+
 cp "$FRED_SRC" "$FRED_BIN"
 chmod +x "$FRED_BIN"
 echo "Fred installed to $FRED_BIN"
